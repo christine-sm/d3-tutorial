@@ -3,22 +3,36 @@
 <head>
   <meta charset="utf-8">
   <title>D3 Test</title>
+  <style media="screen">
+    div.bar {
+      display: inline-block;
+      width: 20px;
+      height: 75px;
+      background-color: teal;
+      margin: 0 1px;
+    }
+  </style>
   <script type="text/javascript" src="d3_source.js"></script>
 </head>
 <body>
   <script type="text/javascript">
     var dataset = [5,10,15,20,25];
-    d3.select('body').selectAll('p')
+    d3.select('body').selectAll('div')
         .data(dataset)
         .enter()
-        .append('p')
-        .text(function(d) { return d; })
-        .style('color', function(d){
-          if (d >= 15) {
-            return 'red';
-          } else {
-            return 'black';
-          }
+        .append('div')
+        .attr('class', 'bar')
+        // .text(function(d) { return d; }) //text plus bars inverts the bars
+        // .style('color', function(d){
+        //   if (d >= 15) {
+        //     return 'red';
+        //   } else {
+        //     return 'black';
+        //   }
+        // })
+        .style('height', function(d){
+          var barHeight = d * 5;
+          return barHeight + 'px';
         })
         ;
   </script>
